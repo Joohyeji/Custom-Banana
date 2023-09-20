@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom 🍌</title>
+
+    <style>
+      @font-face {
+        font-family: 'NeoDunggeunmoPro-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/NeoDunggeunmoPro-Regular.woff2')
+          format('woff2');
+        font-weight: normal;
+        font-style: normal;
+      }
+      * {
+        font-family: 'NeoDunggeunmoPro-Regular';
+        color: #00ff40;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .content_wrap {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        border-top: 1px solid green;
+      }
+      .left_wrap {
+        width: 50%;
+        border-right: 1px solid green;
+      }
+      .img_wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        /* background: #000; */
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        /* border-bottom: 1px solid green; */
+        box-sizing: border-box;
+      }
+
+      .img {
+        position: absolute;
+        width: 100%;
+      }
+      .text_wrap {
+        width: 50%;
+        height: 100vh;
+      }
+      .banana {
+        mix-blend-mode: hue;
+      }
+
+      .tag_wrap {
+        padding: 50px;
+        display: flex;
+        flex-wrap: nowrap;
+        /* justify-content: space-between; */
+      }
+      .tag_wrap inline {
+        width: 30%;
+      }
+      .tag_wrap:nth-child(3) {
+        margin-bottom: 200px;
+      }
+
+      /* range 디자인 변경 */
+      input[type='range'] {
+        width: 50%;
+        margin-top: 20px;
+        height: 5px;
+        -webkit-appearance: none;
+        background: #00ff40;
+        border-radius: 10px;
+      }
+      input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #00ff40;
+        cursor: pointer;
+      }
+      input[type='range']:focus {
+        outline: none;
+      }
+      /* color 디자인 변경 */
+      .color {
+        width: 50px;
+        height: 50px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+      }
+      .color::-webkit-color-swatch {
+        border: 1px solid green;
+        border-radius: 30px;
+      }
+      /* text 디자인 변경 */
+      input {
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+        border: 1px solid green;
+        /* border-radius: 15px; */
+        outline: none;
+        padding-left: 10px;
+        background-color: black;
+      }
+      .tag_wrap:nth-child(3) inline{
+        width: 250px;
+      }
+
+      h1 {
+        font-size: 6rem;
+        padding: 10px;
+        margin: 5px;
+        text-align: center;
+      }
+
+      html {
+        background-color: black;
+      }
+
+      .tag_wrap inline {
+        font-size: 3rem;
+      }
+
+      .say_wrap {
+        border-top: 1px solid green;
+        padding: 50px;
+      }
+      .say_wrap span {
+        font-size: 1.5rem;
+      }
+      .button_container {
+        display: flex;
+        justify-content: flex-end;
+      }
+      button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        text-align: center;
+        font-size: 2rem;
+        width: auto;
+        border: 1px solid green;
+        border-radius: 30px;
+        padding: 20px;
+        background-color: black;
+        margin-bottom: 50px;
+        margin-right: 50px;
+      }
+      button:hover {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>+ Make your own Banana +</h1>
+
+      <div class="content_wrap">
+        <div class="left_wrap">
+          <div class="img_wrap">
+            <img class="img" src="./img/banana_bg.png" alt="banana" />
+            <img class="banana img" src="./img/banana.png" alt="" />
+          </div>
+        </div>
+        <form class="text_wrap">
+          <div class="tag_wrap">
+            <inline>Name</inline>
+            <input
+              type="text"
+              class="input"
+              id="name"
+              placeholder="My LiL-banana"
+            />
+          </div>
+          <div class="tag_wrap">
+            <inline>Size</inline>
+            <input type="range" class="input" id="width" min="10" max="100" />
+            <input type="range" class="input" id="height" min="10" max="100" />
+          </div>
+          <div class="tag_wrap">
+            <inline>Color</inline>
+            <input type="color" class="input color" value="black" />
+          </div>
+          <div class="button_container"><button type="reset" id="reset">RESET</button>
+</div>
+          <div class="say_wrap">
+            <span>Hello ! My Name is <span id="sayname">My Lil-banana </span> ^ -^/ !</span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const color = document.querySelector('.color');
+      const banana = document.querySelector('.banana');
+      const imgs = document.querySelectorAll('.img');
+      const width = document.querySelector('#width');
+      const height = document.querySelector('#height');
+      const id = document.querySelector('#name');
+      const reset = document.querySelector('#reset');
+      const sayname = document.querySelector('#sayname');
+
+      //   console.log(imgs.constructor.name);
+      // 색상변경
+      color.addEventListener('input', () => {
+        banana.style.background = color.value;
+      });
+      //   가로세로 비율 변경
+      width.addEventListener('input', () => {
+        for (let i = 0; i < imgs.length; i++) {
+          const item = imgs.item(i);
+          item.style.width = width.value + '%';
+        }
+      });
+      height.addEventListener('input', () => {
+        for (let i = 0; i < imgs.length; i++) {
+          const item = imgs.item(i);
+          item.style.height = height.value + '%';
+        }
+      });
+      reset.addEventListener('click', () => {
+        for (let i = 0; i < imgs.length; i++) {
+          const item = imgs.item(i);
+          item.style.height = 100 + '%';
+          item.style.width = 100 + '%';
+        }
+        sayname.innerHTML = id.placeholer;//오류있음
+        banana.style.background = '#ffc800';
+      });
+
+      id.addEventListener('input', () => {
+        sayname.innerHTML = id.value;
+      });
+    </script>
+  </body>
+</html>
